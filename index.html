@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Find and save student hostels near your college." />
+  <title>StayNest — Find your next stay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="StayNest home"><span class="brand-mark">S</span><span>stay<span class="brand-accent">nest</span></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Explore</a>
+      <a class="nav-link" href="#saved">Saved</a>
+      <a class="nav-link" href="#bookings">My bookings</a>
+    </nav>
+    <div class="top-actions"><button class="icon-btn" id="notificationBtn" aria-label="Notifications">♧<i></i></button><button class="profile-btn" id="profileBtn"><span class="avatar">A</span><span class="profile-name">My account</span><span class="chevron">⌄</span></button></div>
+  </header>
+
+  <main id="home" class="page-shell">
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow"><span class="eyebrow-dot"></span> YOUR NEXT CHAPTER STARTS HERE</p><h1>Find a place<br>to <span>feel at home.</span></h1><p class="hero-text">Comfortable, verified hostels for students and young professionals. Your new home is closer than you think.</p></div>
+      <div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="art-building building-one"><span></span><span></span><span></span><span></span></div><div class="art-building building-two"><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="art-plant">♣</div><div class="art-card"><span class="art-card-icon">⌂</span><span><b>Find your space</b><small>Make it yours.</small></span></div></div>
+    </section>
+
+    <section class="search-panel" aria-label="Search hostels">
+      <label class="search-field"><span class="field-icon">⌕</span><span class="field-copy"><small>LOCATION</small><input id="locationInput" type="text" placeholder="City, college or area" /></span></label>
+      <span class="search-divider"></span>
+      <label class="search-field"><span class="field-icon">♙</span><span class="field-copy"><small>STAY TYPE</small><select id="typeFilter"><option value="all">Any type</option><option value="Girls">Girls hostel</option><option value="Boys">Boys hostel</option><option value="Co-living">Co-living</option></select></span></label>
+      <span class="search-divider"></span>
+      <label class="search-field"><span class="field-icon">₹</span><span class="field-copy"><small>MONTHLY BUDGET</small><select id="budgetFilter"><option value="all">Any budget</option><option value="5000">Under ₹5,000</option><option value="8000">Under ₹8,000</option><option value="12000">Under ₹12,000</option></select></span></label>
+      <button class="search-btn" id="searchBtn"><span>⌕</span> Search stays</button>
+    </section>
+
+    <div class="content-grid">
+      <section class="listing-area">
+        <div class="section-heading"><div><p class="eyebrow muted">HANDPICKED FOR YOU</p><h2>Explore stays <span id="resultCount" class="count-pill">6</span></h2><p class="section-subtitle">Spaces that fit your life, and your budget.</p></div><button class="filter-btn" id="filterToggle">☷ <span>Filters</span></button></div>
+        <div class="filter-row" id="quickFilters"><button class="chip selected" data-chip="all">All stays</button><button class="chip" data-chip="verified">✓ Verified</button><button class="chip" data-chip="wifi">Wi-Fi</button><button class="chip" data-chip="meals">Meals included</button><button class="chip" data-chip="ac">Air conditioning</button></div>
+        <div class="hostel-grid" id="hostelGrid"></div>
+        <div class="empty-state hidden" id="emptyState"><div class="empty-icon">⌕</div><h3>No stays found</h3><p>Try changing your search or filters.</p><button class="outline-btn" id="clearFilters">Clear filters</button></div>
+      </section>
+      <aside class="map-panel"><div class="map-top"><div><h3>Stay around you</h3><p>Explore popular areas</p></div><button class="map-expand" id="mapExpand" aria-label="Expand map">⛶</button></div><div class="fake-map" id="fakeMap"><div class="map-water"></div><div class="road road-a"></div><div class="road road-b"></div><div class="road road-c"></div><div class="park park-a">GREEN PARK</div><div class="map-label label-a">University Rd</div><div class="map-label label-b">Central Avenue</div><button class="map-pin pin-a" data-hostel="1">₹6.5k</button><button class="map-pin pin-b" data-hostel="2">₹8k</button><button class="map-pin pin-c" data-hostel="3">₹5.5k</button><button class="map-pin pin-d" data-hostel="4">₹9k</button><button class="map-pin pin-e" data-hostel="5">₹7.2k</button><div class="map-legend"><span></span> Popular student areas</div></div><button class="map-link" id="showMapBtn">Explore on map <span>↗</span></button></aside>
+    </div>
+
+    <section class="bottom-banner"><div class="banner-icon">✦</div><div><h3>Have a place to share?</h3><p>List your hostel and connect with your next residents.</p></div><button id="listHostelBtn">List your property <span>→</span></button></section>
+  </main>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation"><a class="active" href="#home"><span>⌂</span>Explore</a><a href="#saved" id="mobileSaved"><span>♡</span>Saved</a><a href="#bookings" id="mobileBookings"><span>▤</span>Bookings</a><a href="#profile" id="mobileProfile"><span>♙</span>Profile</a></nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog class="modal" id="detailModal"><form method="dialog"><button class="modal-close" aria-label="Close">×</button></form><div id="modalContent"></div></dialog>
+  <dialog class="modal small-modal" id="infoModal"><form method="dialog"><button class="modal-close" aria-label="Close">×</button></form><div id="infoContent"></div></dialog>
+  <script src="js/app.js"></script>
+</body>
+</html>
